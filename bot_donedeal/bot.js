@@ -37,7 +37,16 @@ const fetchData = () => new Promise(async (resolve, reject) => {
 
     for (let i = 0; i < carNodes.length; i++) {
       const timeListed = await pupHelper.getTxt('ul.card__body-keyinfo > li:nth-child(4)', carNodes[i]);
-      console.log(timeListed);
+      if (timeListed.includes('min') || timeListed.includes('mins')) {
+        timeListed = Number(timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
+        if (timeListed <= Number(config.repeat)) {
+          console.log(timeListed);
+          console.log('Car can be scraped...');
+          // const specs = await fetchSpecs(page);
+          // console.log(specs);
+  
+        }
+      }
     }
 
     for (let carNumber = 0; carNumber < carsLinks.length; carNumber++) {
