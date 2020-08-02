@@ -56,8 +56,14 @@ const fillFilter = (name, value, page) => new Promise(async (resolve, reject) =>
     const attributesCards = await page.$$('ul.refine-filter-list > li.refine-filter-attribute');
     for (let i = 0; i < attributesCards.length; i++) {
       const attributeTitle = await pupHelper.getTxt('h6', attributesCards[i]);
-      console.log(attributeTitle.toLowerCase());
-      
+      if(attributeTitle.toLowerCase() == name.toLowerCase()) {
+        const options = await attributesCards[i].$$('ng-switch > .ng-scope .dd-btn');
+        for (let j = 0; j < options.length; j++) {
+          const optVal = await pupHelper.getTxt('ng-switch > .ng-scope .dd-btn', attributesCards[i]);
+          console.log(optVal.toLowerCase());
+        }
+        break;
+      }
     }
 
     resolve(true);
