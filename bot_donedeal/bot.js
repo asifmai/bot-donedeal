@@ -42,9 +42,27 @@ const fillFilters = (page) => new Promise(async (resolve, reject) => {
   try {
     await page.waitForSelector('ul.refine-filter-list');
 
+    await fillFilter('body type', config.bodyType, page);
+
     resolve(true);
   } catch (error) {
     console.log('fillFilters Error: ', error);
+    reject(error);
+  }
+});
+
+const fillFilter = (name, value, page) => new Promise(async (resolve, reject) => {
+  try {
+    const attributesCards = await page.$$('ul.refine-filter-list > li.refine-filter-attribute');
+    for (let i = 0; i < attributesCards.length; i++) {
+      const attributeTitle = await pupHelper.getTxt('h6', attributesCards[i]);
+      console.log(attributeTitle.toLowerCase());
+      
+    }
+
+    resolve(true);
+  } catch (error) {
+    console.log('fillFilter Error: ', error);
     reject(error);
   }
 });
