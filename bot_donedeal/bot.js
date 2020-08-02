@@ -27,6 +27,9 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     page = await pupHelper.launchPage(browser);
     await page.goto(config.siteLink, {timeout: 0, waitUntil: 'networkidle2'});
     await fillFilters(page);
+    await page.evaluate(() => {
+      document.querySelector('ul.refine-filter-list > li.refine-filter-attribute:nth-child(9)').scrollIntoView();
+    })
     await page.screenshot({path: 'screenshot.png'});
 
 
