@@ -27,6 +27,7 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     page = await pupHelper.launchPage(browser);
     await page.goto(config.siteLink, {timeout: 0, waitUntil: 'networkidle2'});
     await fillFilters(page);
+    await page.screenshot({path: 'screenshot.png'});
 
 
     await page.close();
@@ -60,7 +61,10 @@ const fillFilter = (name, value, page) => new Promise(async (resolve, reject) =>
         const options = await attributesCards[i].$$('ng-switch > .ng-scope > .dd-btn');
         for (let j = 0; j < options.length; j++) {
           const optVal = await pupHelper.getTxt('span', options[j]);
-          console.log(optVal.toLowerCase());
+          if(optVal.toLowerCase() == value.toLowerCase()) {
+            await options[j].click();
+            break;
+          }
         }
         break;
       }
