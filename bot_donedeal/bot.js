@@ -46,7 +46,9 @@ const fetchData = () => new Promise(async (resolve, reject) => {
         if (timeListed <= Number(config.repeat)) {
           const carLink = await pupHelper.getAttr('a', 'href', carNodes[i]);
           // console.log(`Time Listed: ${timeListed} - Car can be scraped... ${carLink}`);
-          carsLinks.push(carLink);
+          carsLinks.push({
+            timeListed, carLink
+          });
         }
       }
     }
@@ -70,11 +72,12 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     const car = {};
     console.log(`${carIdx+1}/${carsLinks.length} - Fetching Car ${carsLinks[carIdx]}`);
     page = await pupHelper.launchPage(browser);
-    await page.goto(carsLinks[carIdx], {timeout: 0, waitUntil: 'networkidle2'});
+    await page.goto(carsLinks[carIdx].carLink, {timeout: 0, waitUntil: 'networkidle2'});
     
     const specs = await fetchSpecs(page);
 
     car.title = await pupHelper.getTxt('.cad-header h1', page);
+    car.link = carsLinks[carIdx].carLink;
     car.make = await getCellValue('make / model', specs);
     car.model = await getCellValue('model', specs);
     car.year= await getCellValue('year', specs);
@@ -84,6 +87,7 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     car.doors = await getCellValue('doors', specs);
     car.price = await pupHelper.getTxt('.price-info__left-options span.price', page);
     car.images = await pupHelper.getAttr('.gallery-media-content img', 'src', page);
+    car.timeListed = carsLinks[carIdx].timeListed;
     console.log(car);
     results.push(car);
 
@@ -91,7 +95,7 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     resolve(true);
   } catch (error) {
     if (page) await page.close();
-    console.log(`fetchCar[${carsLinks[carIdx]}] Error: `, error);
+    console.log(`fetchCar[${carsLinks[carIdx].carLink}] Error: `, error);
     reject(error);
   }
 });
