@@ -1,1 +1,12 @@
-{"siteLink":"https://www.donedeal.ie/cars","repeat":"2","location":"ALL IRELAND","bodyType":"Hatchback","country":"Ireland","price":"Price","doors":"Any","fuelType":"Petrol","sellerType":"Private","forSale":"For Sale","countryOfRegistration":"Ireland"}
+{
+  "siteLink": "https://www.donedeal.ie/cars",
+  "repeat": "2",
+  "location": "ALL IRELAND",
+  "bodyType": "Hatchback",
+  "price": "Price",
+  "doors": "Any",
+  "fuelType": "Petrol",
+  "sellerType": "Private",
+  "forSale": "For Sale",
+  "countryOfRegistration": "Ireland"
+}

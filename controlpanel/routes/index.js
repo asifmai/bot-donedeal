@@ -21,7 +21,6 @@ router.post('/', async (req, res, next) => {
     config.repeat = req.body.repeat;
     config.location = req.body.location;
     config.bodyType = req.body.bodyType;
-    config.country = req.body.country;
     config.price = req.body.price;
     config.doors = req.body.doors;
     config.fuelType = req.body.fuelType;

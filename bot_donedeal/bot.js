@@ -26,13 +26,25 @@ const fetchData = () => new Promise(async (resolve, reject) => {
   try {
     page = await pupHelper.launchPage(browser);
     await page.goto(config.siteLink, {timeout: 0, waitUntil: 'networkidle2'});
-    await page.screenshot({path: 'screenshot.png'});
+    await fillFilters(page);
+
 
     await page.close();
     resolve(true);
   } catch (error) {
     if (page) await page.close();
     console.log('fetchData Error: ', error);
+    reject(error);
+  }
+});
+
+const fillFilters = (page) => new Promise(async (resolve, reject) => {
+  try {
+    await page.waitForSelector('ul.refine-filter-list');
+
+    resolve(true);
+  } catch (error) {
+    console.log('fillFilters Error: ', error);
     reject(error);
   }
 });
