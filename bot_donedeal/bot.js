@@ -70,16 +70,17 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     
     const specs = await fetchSpecs(page);
 
-    result.make = await getCellValue('make / model', specs);
-    result.model = await getCellValue('model', specs);
-    result.year= await getCellValue('year', specs);
-    result.mileage = await getCellValue('mileage', specs);
-    result.transmission = await getCellValue('transmission', specs);
-    result.color = await getCellValue('colour', specs);
-    result.doors = await getCellValue('doors', specs);
-    // result.price
-    // result.description
-    // result.images
+    car.make = await getCellValue('make / model', specs);
+    car.model = await getCellValue('model', specs);
+    car.year= await getCellValue('year', specs);
+    car.mileage = await getCellValue('mileage', specs);
+    car.transmission = await getCellValue('transmission', specs);
+    car.color = await getCellValue('colour', specs);
+    car.doors = await getCellValue('doors', specs);
+    car.price = await pupHelper.getTxt('.price-info__left-options span.price', page);
+    car.price = car.price.replace(/,/gi, '').trim()
+    // car.description
+    // car.images
     console.log(car);
 
     await page.close();
