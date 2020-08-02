@@ -25,8 +25,9 @@ const fetchData = () => new Promise(async (resolve, reject) => {
   let page;
   try {
     page = await pupHelper.launchPage(browser);
-    await page.goto(config.siteLink, {timeout: 0, waitUntil: 'networkidle2'});
-    await fillFilters(page);
+    const link = createSiteLink();
+    console.log(link);
+    await page.goto(link, {timeout: 0, waitUntil: 'networkidle2'});
 
     await page.screenshot({path: 'screenshot.png'});
 
@@ -39,6 +40,17 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     reject(error);
   }
 });
+
+const createSiteLink = () => {
+  let link = config.siteLink;
+  link += `&bodyType=${config.bodyType}`;
+  link += `&car-finance=${config['car-finance']}`;
+  link += `&numDoors=${config.numDoors}`;
+  link += `&fuelType=${config.fuelType}`;
+  link += `&source=${config.source}`;
+  link += `&adType=${config.adType}`;
+  link += `&country=${config.country}`;
+}
 
 const fillFilters = (page) => new Promise(async (resolve, reject) => {
   try {
