@@ -16,53 +16,92 @@
               <input type="number" class="form-control" id="repeat" name="repeat" min="1" value="<%= config.repeat %>" required>
             </div>
           </div>
-          
+
           <div class="col-md-6">
             <div class="form-group">
               <label for="bodyType">Body Type</label>
-              <input type="text" class="form-control" id="bodyType" name="bodyType" value="<%= config.bodyType %>" required>
+              <select name="bodyType" id="bodyType" class="form-control">
+                <option value="" <%= config.bodyType == '' ? 'selected' : '' %>>Any</option>
+                <option value="Cabriolet" <%= config.bodyType == 'Cabriolet' ? 'selected' : '' %>>Cabriolet</option>
+                <option value="Coupe" <%= config.bodyType == 'Coupe' ? 'selected' : '' %>>Coupe</option>
+                <option value="Saloon" <%= config.bodyType == 'Saloon' ? 'selected' : '' %>>Saloon</option>
+                <option value="Hatchback" <%= config.bodyType == 'Hatchback' ? 'selected' : '' %>>Hatchback</option>
+                <option value="Estate" <%= config.bodyType == 'Estate' ? 'selected' : '' %>>Estate</option>
+                <option value="MPV" <%= config.bodyType == 'MPV' ? 'selected' : '' %>>MPV</option>
+                <option value="SUV" <%= config.bodyType == 'SUV' ? 'selected' : '' %>>SUV</option>
+              </select>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
-              <label for="price">Price</label>
-              <input type="text" class="form-control" id="price" name="price" value="<%= config.price %>" required>
+              <label for="car-finance">Price / Per Month</label>
+              <select name="car-finance" id="car-finance" class="form-control">
+                <option value="" <%= config['car-finance'] == '' ? 'selected' : '' %>>Price</option>
+                <option value="yes" <%= config['car-finance'] == 'yes' ? 'selected' : '' %>>Per Month</option>
+              </select>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
-              <label for="doors">Doors</label>
-              <input type="text" class="form-control" id="doors" name="doors" value="<%= config.doors %>" required>
+              <label for="numDoors">Doors</label>
+              <select name="numDoors" id="numDoors" class="form-control">
+                <option value="" <%= config.numDoors == '' ? 'selected' : '' %>>Any</option>
+                <option value="2" <%= config.numDoors == '2' ? 'selected' : '' %>>2</option>
+                <option value="3" <%= config.numDoors == '3' ? 'selected' : '' %>>3</option>
+                <option value="4" <%= config.numDoors == '4' ? 'selected' : '' %>>4</option>
+                <option value="5" <%= config.numDoors == '5' ? 'selected' : '' %>>5</option>
+                <option value="6" <%= config.numDoors == '6' ? 'selected' : '' %>>6</option>
+              </select>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
               <label for="fuelType">Fuel Type</label>
-              <input type="text" class="form-control" id="fuelType" name="fuelType" value="<%= config.fuelType %>" required>
+              <select name="fuelType" id="fuelType" class="form-control">
+                <option value="" <%= config.fuelType == '' ? 'selected' : '' %>>Any</option>
+                <option value="Petrol" <%= config.fuelType == 'Petrol' ? 'selected' : '' %>>Petrol</option>
+                <option value="Diesel" <%= config.fuelType == 'Diesel' ? 'selected' : '' %>>Diesel</option>
+                <option value="Electric" <%= config.fuelType == 'Electric' ? 'selected' : '' %>>Electric</option>
+                <option value="Hybrid" <%= config.fuelType == 'Hybrid' ? 'selected' : '' %>>Hybrid</option>
+              </select>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
-              <label for="sellerType">Seller Type</label>
-              <input type="text" class="form-control" id="sellerType" name="sellerType" value="<%= config.sellerType %>" required>
+              <label for="source">Seller Type</label>
+              <select name="source" id="source" class="form-control">
+                <option value="" <%= config.source == '' ? 'selected' : '' %>>Any</option>
+                <option value="private" <%= config.source == 'private' ? 'selected' : '' %>>Private</option>
+                <option value="trade" <%= config.source == 'trade' ? 'selected' : '' %>>Dealer</option>
+                <option value="simi" <%= config.source == 'simi' ? 'selected' : '' %>>SIMI</option>
+              </select>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
-              <label for="forSale">For Sale</label>
-              <input type="text" class="form-control" id="forSale" name="forSale" value="<%= config.forSale %>" required>
+              <label for="adType">For Sale</label>
+              <select name="adType" id="adType" class="form-control">
+                <option value="" <%= config.adType == '' ? 'selected' : '' %>>For Sale</option>
+                <option value="wanted" <%= config.adType == 'wanted' ? 'selected' : '' %>>Wanted</option>
+              </select>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
-              <label for="countryOfRegistration">Country of Registeration</label>
-              <input type="text" class="form-control" id="countryOfRegistration" name="countryOfRegistration" value="<%= config.countryOfRegistration %>" required>
+              <label for="country">Country of Registeration</label>
+              <select name="country" id="country" class="form-control">
+                <option value="" <%= config.country == '' ? 'selected' : '' %>>Any</option>
+                <option value="Ireland" <%= config.country == 'Ireland' ? 'selected' : '' %>>Ireland</option>
+                <option value="UK" <%= config.country == 'UK' ? 'selected' : '' %>>UK</option>
+                <option value="Northern%20Ireland" <%= config.country == 'Northern%20Ireland' ? 'selected' : '' %>>N. Ireland</option>
+                <option value="Other" <%= config.country == 'Other' ? 'selected' : '' %>>Other</option>
+              </select>
             </div>
           </div>
 

@@ -1,11 +1,1 @@
-{
-  "siteLink": "https://www.donedeal.ie/cars?sort=publishdate%20desc",
-  "repeat": "2",
-  "bodyType": "Hatchback",
-  "price": "Price",
-  "doors": "Any",
-  "fuelType": "Petrol",
-  "sellerType": "Private",
-  "forSale": "For Sale",
-  "countryOfRegistration": "Ireland"
-}
+{"siteLink":"https://www.donedeal.ie/cars?sort=publishdate%20desc","repeat":"4","bodyType":"Hatchback","car-finance":"","numDoors":"4","fuelType":"Petrol","source":"","adType":"","country":"Ireland"}

@@ -20,12 +20,12 @@ router.post('/', async (req, res, next) => {
     const config = await getConfig.get();
     config.repeat = req.body.repeat;
     config.bodyType = req.body.bodyType;
-    config.price = req.body.price;
-    config.doors = req.body.doors;
+    config['car-finance'] = req.body['car-finance'];
+    config.numDoors = req.body.numDoors;
     config.fuelType = req.body.fuelType;
-    config.sellerType = req.body.sellerType;
-    config.forSale = req.body.forSale;
-    config.countryOfRegistration = req.body.countryOfRegistration;
+    config.source = req.body.source;
+    config.adType = req.body.adType;
+    config.country = req.body.country;
     await getConfig.set(config);
     axios.get(`${botLink}/restart`);
   
