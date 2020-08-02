@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Control Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Control Panel</h1>
+      <form action="/" method="post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="repeat">Repeat Minutes</label>
+              <input type="number" class="form-control" id="repeat" name="repeat" min="1" value="<%= config.repeat %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" class="form-control" id="location" name="location" value="<%= config.location %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="bodyType">Body Type</label>
+              <input type="text" class="form-control" id="bodyType" name="bodyType" value="<%= config.bodyType %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input type="text" class="form-control" id="country" name="country" value="<%= config.country %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input type="text" class="form-control" id="price" name="price" value="<%= config.price %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="doors">Doors</label>
+              <input type="text" class="form-control" id="doors" name="doors" value="<%= config.doors %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="fuelType">Fuel Type</label>
+              <input type="text" class="form-control" id="fuelType" name="fuelType" value="<%= config.fuelType %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="sellerType">Seller Type</label>
+              <input type="text" class="form-control" id="sellerType" name="sellerType" value="<%= config.sellerType %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="forSale">For Sale</label>
+              <input type="text" class="form-control" id="forSale" name="forSale" value="<%= config.forSale %>" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="countryOfRegistration">Country of Registeration</label>
+              <input type="text" class="form-control" id="countryOfRegistration" name="countryOfRegistration" value="<%= config.countryOfRegistration %>" required>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-3 m-auto">
+            <button class="btn btn-success btn-block">Submit</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </body>
+</html>
