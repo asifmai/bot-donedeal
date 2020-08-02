@@ -57,6 +57,10 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     await page.goto(carsLinks[carIdx], {timeout: 0, waitUntil: 'networkidle2'});
 
     car.timeListed = await pupHelper.getTxt('span.time-listed', page);
+    if (car.timeListed.includes('min') || car.timeListed.includes('mins')) {
+      const timeListed = Number(car.timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
+      console.log(timeListed);
+    }
     // result.make
     // result.model
     // result.year
