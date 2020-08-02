@@ -56,7 +56,7 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     page = await pupHelper.launchPage(browser);
     await page.goto(carsLinks[carIdx], {timeout: 0, waitUntil: 'networkidle2'});
 
-    results.timeListed = await pupHelper.getTxt('span.time-listed', page);
+    car.timeListed = await pupHelper.getTxt('span.time-listed', page);
     // result.make
     // result.model
     // result.year
@@ -64,7 +64,7 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     // result.price
     // result.description
     // result.images
-    console.log(timeListed);
+    console.log(car);
 
     await page.close();
     resolve(true);
