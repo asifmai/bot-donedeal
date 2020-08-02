@@ -7,7 +7,7 @@ module.exports.run = () => new Promise(async (resolve, reject) => {
   try {
     console.log('Started Scraping...');
     config = await getConfig.get();
-    browser = await pupHelper.launchBrowser(true);
+    browser = await pupHelper.launchBrowser();
 
     await fetchData();
     
@@ -26,10 +26,10 @@ const fetchData = () => new Promise(async (resolve, reject) => {
   try {
     page = await pupHelper.launchPage(browser);
     await page.goto(config.siteLink, {timeout: 0, waitUntil: 'networkidle2'});
+    await page.screenshot({path: 'screenshot.png'});
 
-
-    // await page.close();
-    // resolve(true);
+    await page.close();
+    resolve(true);
   } catch (error) {
     if (page) await page.close();
     console.log('fetchData Error: ', error);
