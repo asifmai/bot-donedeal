@@ -36,7 +36,7 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     const carNodes = await page.$$('.card-collection-container > ul.card-collection > li.card-item');
 
     for (let i = 0; i < carNodes.length; i++) {
-      const timeListed = await pupHelper.getTxt('ul.card__body-keyinfo > li:nth-child(4)', carNodes[i]);
+      let timeListed = await pupHelper.getTxt('ul.card__body-keyinfo > li:nth-child(4)', carNodes[i]);
       if (timeListed.includes('min') || timeListed.includes('mins')) {
         timeListed = Number(timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
         if (timeListed <= Number(config.repeat)) {
