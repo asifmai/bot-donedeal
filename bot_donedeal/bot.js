@@ -69,12 +69,14 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     await page.goto(carsLinks[carIdx], {timeout: 0, waitUntil: 'networkidle2'});
     
     const specs = await fetchSpecs(page);
-    console.log(specs);
 
-    // result.make
-    // result.model
-    // result.year
-    // result.mileage
+    result.make = await getCellValue('make / model', specs);
+    result.model = await getCellValue('model', specs);
+    result.year= await getCellValue('year', specs);
+    result.mileage = await getCellValue('mileage', specs);
+    result.transmission = await getCellValue('transmission', specs);
+    result.color = await getCellValue('colour', specs);
+    result.doors = await getCellValue('doors', specs);
     // result.price
     // result.description
     // result.images
@@ -85,6 +87,23 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
   } catch (error) {
     if (page) await page.close();
     console.log(`fetchCar[${carsLinks[carIdx]}] Error: `, error);
+    reject(error);
+  }
+});
+
+const getCellValue = (label, specs) => new Promise(async (resolve, reject) => {
+  try {
+    let returnVal = '';
+
+    for (const key in specs) {
+      if (key !== '' && key.toLowerCase() == label.toLowerCase()) {
+        returnVal = specs[key];
+      }
+    }
+
+    resolve(returnVal);
+  } catch (error) {
+    console.log('getCellValue Error: ', error);
     reject(error);
   }
 });
