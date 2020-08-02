@@ -84,6 +84,7 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     car.doors = await getCellValue('doors', specs);
     car.price = await pupHelper.getTxt('.price-info__left-options span.price', page);
     car.images = await pupHelper.getAttr('.gallery-media-content img', 'src', page);
+    console.log(car);
     results.push(car);
 
     await page.close();
