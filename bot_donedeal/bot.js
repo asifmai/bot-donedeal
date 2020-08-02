@@ -61,11 +61,10 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
       const timeListed = Number(car.timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
       if (timeListed <= Number(config.repeat)) {
         console.log('Car can be scraped...');
-      } else {
-        console.log('Car cannot be scraped...');
+        const specs = await fetchSpecs(page);
+        console.log(specs);
+
       }
-    } else {
-      console.log('Car cannot be scraped...');
     }
     // result.make
     // result.model
@@ -81,6 +80,24 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
   } catch (error) {
     if (page) await page.close();
     console.log(`fetchCar[${carsLinks[carIdx]}] Error: `, error);
+    reject(error);
+  }
+});
+
+const fetchSpecs = (page) => new Promise(async (resolve, reject) => {
+  try {
+    const specs = {};
+    await page.waitForSelector('.cad-content > ul.meta-info > li.meta-info__item');
+    const props = await page.$$('.cad-content > ul.meta-info > li.meta-info__item');
+    for (let i = 0; i < props.length; i++) {
+      const label = await pupHelper.getTxt('.meta-info__key', props[i]);
+      const value = await pupHelper.getTxt('.meta-info__value', props[i]);
+      specs[label] = value;
+    }
+
+    resolve(specs);
+  } catch (error) {
+    console.log('fetchSpecs Error: ', error);
     reject(error);
   }
 });
