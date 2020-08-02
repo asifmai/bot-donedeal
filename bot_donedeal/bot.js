@@ -29,7 +29,8 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     await fillFilters(page);
     await page.evaluate(() => {
       document.querySelector('ul.refine-filter-list > li.refine-filter-attribute:nth-child(9)').scrollIntoView();
-    })
+    });
+
     await page.screenshot({path: 'screenshot.png'});
 
 
@@ -47,6 +48,12 @@ const fillFilters = (page) => new Promise(async (resolve, reject) => {
     await page.waitForSelector('ul.refine-filter-list');
 
     await fillFilter('body type', config.bodyType, page);
+    await fillFilter('Price / Per Month', config.price, page);
+    await fillFilter('doors', config.doors, page);
+    await fillFilter('Fuel Type', config.fuelType, page);
+    await fillFilter('Seller Type', config.sellerType, page);
+    await fillFilter('For Sale / Wanted', config.forSale, page);
+    await fillFilter('Country of Registration', config.countryOfRegistration, page);
 
     resolve(true);
   } catch (error) {
@@ -73,6 +80,7 @@ const fillFilter = (name, value, page) => new Promise(async (resolve, reject) =>
       }
     }
 
+    await page.waitFor(1000);
     resolve(true);
   } catch (error) {
     console.log('fillFilter Error: ', error);

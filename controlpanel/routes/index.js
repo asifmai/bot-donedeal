@@ -19,7 +19,6 @@ router.post('/', async (req, res, next) => {
   try {
     const config = await getConfig.get();
     config.repeat = req.body.repeat;
-    config.location = req.body.location;
     config.bodyType = req.body.bodyType;
     config.price = req.body.price;
     config.doors = req.body.doors;
