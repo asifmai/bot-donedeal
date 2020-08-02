@@ -29,7 +29,7 @@ router.post('/', async (req, res, next) => {
     config.forSale = req.body.forSale;
     config.countryOfRegistration = req.body.countryOfRegistration;
     await getConfig.set(config);
-    await axios.get(`${botLink}/restart`);
+    axios.get(`${botLink}/restart`);
   
     res.redirect('/'); 
   } catch (error) {
