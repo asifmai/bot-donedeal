@@ -28,8 +28,9 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     await page.goto(config.siteLink, {timeout: 0, waitUntil: 'networkidle2'});
     await fillFilters(page);
     await page.evaluate(() => {
-      document.querySelector('ul.refine-filter-list > li.refine-filter-attribute:nth-child(9)').scrollIntoView();
+      document.querySelector('ul.refine-filter-list').scrollIntoView();
     });
+    await page.waitFor(3000);
 
     await page.screenshot({path: 'screenshot.png'});
 
