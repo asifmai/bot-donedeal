@@ -1,5 +1,7 @@
+require('dotenv').config();
 const pupHelper = require('./helpers/puppeteerhelper');
 const getConfig = require('./helpers/getconfig');
+const nodemailer = require('nodemailer');
 let config;
 let browser;
 const results = [];
@@ -140,5 +142,37 @@ const createSiteLink = () => {
 
   return link;
 }
+
+const sendEmail = () => new Promise(async (resolve, reject) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASSWORD // naturally, replace both with your real credentials or an application-specific password
+      }
+    });
+    
+    const mailOptions = {
+      from: 'bot.donedeal@gmail.com',
+      to: 'asifmai@hotmail.com',
+      subject: 'Done Deal Bot Notifications',
+      text: 'Dudes, we really need your money.'
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+      console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
+    resolve(true);
+  } catch (error) {
+    console.log('sendEmail Error: ', error);
+    reject(error);
+  }
+});
 
 this.run();
