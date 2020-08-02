@@ -59,7 +59,7 @@ const fillFilter = (name, value, page) => new Promise(async (resolve, reject) =>
       if(attributeTitle.toLowerCase() == name.toLowerCase()) {
         const options = await attributesCards[i].$$('ng-switch > .ng-scope .dd-btn');
         for (let j = 0; j < options.length; j++) {
-          const optVal = await pupHelper.getTxt('ng-switch > .ng-scope .dd-btn', attributesCards[i]);
+          const optVal = await pupHelper.getTxt('span', attributesCards[i]);
           console.log(optVal.toLowerCase());
         }
         break;
