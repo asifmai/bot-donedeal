@@ -59,7 +59,9 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     car.timeListed = await pupHelper.getTxt('span.time-listed', page);
     if (car.timeListed.includes('min') || car.timeListed.includes('mins')) {
       const timeListed = Number(car.timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
-      console.log(timeListed);
+      if (timeListed <= Number(config.repeat)) {
+        console.log('Car can be scraped...');
+      }
     }
     // result.make
     // result.model
