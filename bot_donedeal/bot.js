@@ -41,15 +41,15 @@ const fetchData = () => new Promise(async (resolve, reject) => {
         timeListed = Number(timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
         if (timeListed <= Number(config.repeat)) {
           const carLink = await pupHelper.getAttr('a', 'href', carNodes[i]);
-          console.log(`Time Listed: ${timeListed} - Car can be scraped... ${carLink}`);
+          // console.log(`Time Listed: ${timeListed} - Car can be scraped... ${carLink}`);
           carsLinks.push(carLink);
         }
       }
     }
 
-    // for (let carNumber = 0; carNumber < carsLinks.length; carNumber++) {
-    //   await fetchCar(carNumber);
-    // }
+    for (let carNumber = 0; carNumber < carsLinks.length; carNumber++) {
+      await fetchCar(carNumber);
+    }
 
     await page.close();
     resolve(true);
@@ -67,17 +67,10 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     console.log(`${carIdx+1}/${carsLinks.length} - Fetching Car ${carsLinks[carIdx]}`);
     page = await pupHelper.launchPage(browser);
     await page.goto(carsLinks[carIdx], {timeout: 0, waitUntil: 'networkidle2'});
+    
+    const specs = await fetchSpecs(page);
+    console.log(specs);
 
-    car.timeListed = await pupHelper.getTxt('span.time-listed', page);
-    if (car.timeListed.includes('min') || car.timeListed.includes('mins')) {
-      const timeListed = Number(car.timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
-      if (timeListed <= Number(config.repeat)) {
-        console.log('Car can be scraped...');
-        const specs = await fetchSpecs(page);
-        console.log(specs);
-
-      }
-    }
     // result.make
     // result.model
     // result.year
