@@ -6,7 +6,7 @@ let browser;
 module.exports.run = () => new Promise(async (resolve, reject) => {
   try {
     console.log('Started Scraping...');
-    config = await getConfig();
+    config = await getConfig.get();
     browser = await pupHelper.launchBrowser(true);
 
     await fetchData();
