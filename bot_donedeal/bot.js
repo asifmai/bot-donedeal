@@ -15,9 +15,9 @@ module.exports.run = () => new Promise(async (resolve, reject) => {
     config = await getConfig.get();
     browser = await pupHelper.launchBrowser();
 
-    await fetchData();
+    // await fetchData();
 
-    // await sendEmail();
+    await sendEmail();
     
     console.log('Finished Scraping...');
     await browser.close();
@@ -164,13 +164,12 @@ const sendEmail = () => new Promise(async (resolve, reject) => {
           },
         });
 
-    
         const mailOptions = {
-          from: 'Test2Sure.com <test2sure.com@gmail.com>',
-          to: 'test2sure@gmail.com',
-          // to: 'asifmai@hotmail.com',
-          subject: 'Contact Us',
-          html: generateEmailBody(name, email, subject, message),
+          from: 'bot.donedeal@gmail.com <bot.donedeal@gmail.com>',
+          to: 'asifmai@hotmail.com',
+          subject: 'Bot Done Deal Notifications',
+          // html: generateEmailBody(name, email, subject, message),
+          html: '<h1>DONE</h1>',
         };
     
         transporter.sendMail(mailOptions, (error, info) => {
