@@ -50,6 +50,8 @@ const createSiteLink = () => {
   link += `&source=${config.source}`;
   link += `&adType=${config.adType}`;
   link += `&country=${config.country}`;
+
+  return link;
 }
 
 const fillFilters = (page) => new Promise(async (resolve, reject) => {
