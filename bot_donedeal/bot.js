@@ -33,7 +33,12 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     await page.screenshot({path: 'screenshot.png'});
 
     await page.waitForSelector('.card-collection-container > ul.card-collection > li.card-item');
-    carsLinks = await pupHelper.getAttrMultiple('.card-collection-container > ul.card-collection > li.card-item > a', 'href', page);
+    const carNodes = await page.$$('.card-collection-container > ul.card-collection > li.card-item');
+
+    for (let i = 0; i < carNodes.length; i++) {
+      const timeListed = await pupHelper.getTxt('ul.card__body-keyinfo > li:nth-child(4)', carNodes[i]);
+      console.log(timeListed);
+    }
 
     for (let carNumber = 0; carNumber < carsLinks.length; carNumber++) {
       await fetchCar(carNumber);
