@@ -12,6 +12,8 @@ module.exports.run = () => new Promise(async (resolve, reject) => {
     browser = await pupHelper.launchBrowser();
 
     await fetchData();
+
+    // await sendEmail();
     
     console.log('Finished Scraping...');
     await browser.close();
@@ -70,6 +72,7 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     
     const specs = await fetchSpecs(page);
 
+    car.title = await pupHelper.getTxt('.cad-header h1', page);
     car.make = await getCellValue('make / model', specs);
     car.model = await getCellValue('model', specs);
     car.year= await getCellValue('year', specs);
@@ -78,9 +81,8 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
     car.color = await getCellValue('colour', specs);
     car.doors = await getCellValue('doors', specs);
     car.price = await pupHelper.getTxt('.price-info__left-options span.price', page);
-    car.price = car.price.replace(/,/gi, '').trim()
     car.images = await pupHelper.getAttr('.gallery-media-content img', 'src', page);
-    console.log(car);
+    results.push(car);
 
     await page.close();
     resolve(true);
