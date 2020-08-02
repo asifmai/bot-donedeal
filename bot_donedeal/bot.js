@@ -27,10 +27,6 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     page = await pupHelper.launchPage(browser);
     await page.goto(config.siteLink, {timeout: 0, waitUntil: 'networkidle2'});
     await fillFilters(page);
-    await page.evaluate(() => {
-      document.querySelector('ul.refine-filter-list').scrollIntoView();
-    });
-    await page.waitFor(3000);
 
     await page.screenshot({path: 'screenshot.png'});
 
@@ -55,6 +51,13 @@ const fillFilters = (page) => new Promise(async (resolve, reject) => {
     await fillFilter('Seller Type', config.sellerType, page);
     await fillFilter('For Sale / Wanted', config.forSale, page);
     await fillFilter('Country of Registration', config.countryOfRegistration, page);
+
+    await page.click('.refine-filters-content > .refine-filters-subheader > .plus-btn');
+
+    await page.evaluate(() => {
+      document.querySelector('.card-collection-container .card-collection').scrollIntoView();
+    });
+    await page.waitFor(3000);
 
     resolve(true);
   } catch (error) {
