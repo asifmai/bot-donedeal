@@ -57,9 +57,9 @@ const fillFilter = (name, value, page) => new Promise(async (resolve, reject) =>
     for (let i = 0; i < attributesCards.length; i++) {
       const attributeTitle = await pupHelper.getTxt('h6', attributesCards[i]);
       if(attributeTitle.toLowerCase() == name.toLowerCase()) {
-        const options = await attributesCards[i].$$('ng-switch > .ng-scope .dd-btn');
+        const options = await attributesCards[i].$$('ng-switch > .ng-scope > .dd-btn');
         for (let j = 0; j < options.length; j++) {
-          const optVal = await pupHelper.getTxt('span', options[i]);
+          const optVal = await pupHelper.getTxt('span', options[j]);
           console.log(optVal.toLowerCase());
         }
         break;
