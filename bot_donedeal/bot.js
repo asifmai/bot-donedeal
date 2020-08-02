@@ -61,7 +61,11 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
       const timeListed = Number(car.timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
       if (timeListed <= Number(config.repeat)) {
         console.log('Car can be scraped...');
+      } else {
+        console.log('Car cannot be scraped...');
       }
+    } else {
+      console.log('Car cannot be scraped...');
     }
     // result.make
     // result.model
