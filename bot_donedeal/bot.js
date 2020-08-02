@@ -32,7 +32,7 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     await page.goto(link, {timeout: 0, waitUntil: 'networkidle2'});
     await page.screenshot({path: 'screenshot.png'});
 
-    await page.waitForSelector('.card-collection-container > ul.card-collection > li.card-item > a');
+    await page.waitForSelector('.card-collection-container > ul.card-collection > li.card-item');
     carsLinks = await pupHelper.getAttrMultiple('.card-collection-container > ul.card-collection > li.card-item > a', 'href', page);
 
     for (let carNumber = 0; carNumber < carsLinks.length; carNumber++) {
@@ -51,7 +51,7 @@ const fetchData = () => new Promise(async (resolve, reject) => {
 const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
   let page;
   try {
-    const result = {};
+    const car = {};
     console.log(`${carIdx+1}/${carsLinks.length}Fetching Car ${carsLinks[carIdx]}`);
     page = await pupHelper.launchPage(browser);
 
