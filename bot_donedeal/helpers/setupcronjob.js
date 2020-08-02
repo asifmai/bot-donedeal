@@ -4,7 +4,7 @@ const bot = require('../bot');
 
 module.exports = async () => new Promise(async (resolve, reject) => {
   try {
-    const config = await getConfig();
+    const config = await getConfig.get();
     
     // Setup Cron job at scheduleTime
     const cronSchedule = `*/${config.repeat} * * * *`;
