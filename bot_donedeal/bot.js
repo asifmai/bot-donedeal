@@ -70,7 +70,7 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
   let page;
   try {
     const car = {};
-    console.log(`${carIdx+1}/${carsLinks.length} - Fetching Car ${carsLinks[carIdx]}`);
+    console.log(`${carIdx+1}/${carsLinks.length} - Fetching Car ${carsLinks[carIdx].carIdx}`);
     page = await pupHelper.launchPage(browser);
     await page.goto(carsLinks[carIdx].carLink, {timeout: 0, waitUntil: 'networkidle2'});
     
@@ -150,6 +150,35 @@ const createSiteLink = () => {
 
 const sendEmail = () => new Promise(async (resolve, reject) => {
   try {
+    nodemailer.createTestAccount((err, account) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASSWORD,
+          },
+        });
+    
+        const mailOptions = {
+          from: 'Test2Sure.com <test2sure.com@gmail.com>',
+          to: 'test2sure@gmail.com',
+          // to: 'asifmai@hotmail.com',
+          subject: 'Contact Us',
+          html: generateEmailBody(name, email, subject, message),
+        };
+    
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            return console.log(error);
+          }
+          console.log('Contact Us Email Sent : %s', info.response);
+        });
+      }
+    });
+    //  dasfd
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
