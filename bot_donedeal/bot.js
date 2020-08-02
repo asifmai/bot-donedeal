@@ -42,6 +42,7 @@ const fetchData = () => new Promise(async (resolve, reject) => {
 
 const fillFilters = (page) => new Promise(async (resolve, reject) => {
   try {
+    console.log('Filling Filters');
     await page.waitForSelector('ul.refine-filter-list');
 
     await fillFilter('body type', config.bodyType, page);
@@ -68,6 +69,7 @@ const fillFilters = (page) => new Promise(async (resolve, reject) => {
 
 const fillFilter = (name, value, page) => new Promise(async (resolve, reject) => {
   try {
+    console.log('Filling Filter: ', name);
     const attributesCards = await page.$$('ul.refine-filter-list > li.refine-filter-attribute');
     for (let i = 0; i < attributesCards.length; i++) {
       const attributeTitle = await pupHelper.getTxt('h6', attributesCards[i]);
