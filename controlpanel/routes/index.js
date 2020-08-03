@@ -17,8 +17,11 @@ router.get('/', async function(req, res, next) {
 /* GET home page. */
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body);
     const config = await getConfig.get();
     config.repeat = req.body.repeat;
+    config.make = req.body.make;
+    config.model = req.body.model;
     config.bodyType = req.body.bodyType;
     config['car-finance'] = req.body['car-finance'];
     config.numDoors = req.body.numDoors;
