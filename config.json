@@ -1,1 +1,24 @@
-{"siteLink":"https://www.donedeal.ie/cars","repeat":"10","bodyType":"Hatchback","car-finance":"","numDoors":"4","fuelType":"Petrol","source":"","adType":"","country":"Ireland","area":"Leinster","make":"","model":"","price_from":"1","price_to":"50000","year_from":"","year_to":"","verifications":"","transmission":"","engine_from":"","engine_to":"","mileage_from":"","mileage_to":""}
+{
+  "siteLink": "https://www.donedeal.ie/cars",
+  "repeat": "10",
+  "bodyType": "Hatchback",
+  "car-finance": "",
+  "numDoors": "4",
+  "fuelType": "Petrol",
+  "source": "",
+  "adType": "",
+  "country": "Ireland",
+  "area": "Leinster",
+  "make": "",
+  "model": "",
+  "price_from": "1",
+  "price_to": "50000",
+  "year_from": "",
+  "year_to": "",
+  "verifications": "",
+  "transmission": "",
+  "engine_from": "",
+  "engine_to": "",
+  "mileage_from": "",
+  "mileage_to": ""
+}
