@@ -9,8 +9,6 @@ let carsLinks = [];
 
 module.exports.run = () => new Promise(async (resolve, reject) => {
   try {
-    console.log(process.env.GMAIL_USER)
-    console.log(process.env.GMAIL_PASSWORD)
     console.log('Started Scraping...');
     config = await getConfig.get();
     browser = await pupHelper.launchBrowser();
