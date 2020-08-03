@@ -15,9 +15,11 @@ module.exports.run = () => new Promise(async (resolve, reject) => {
     config = await getConfig.get();
     browser = await pupHelper.launchBrowser();
 
-    // await fetchData();
+    await fetchData();
 
-    await sendEmail();
+    if (results.length > 0) {
+      await sendEmail();
+    }
     
     console.log('Finished Scraping...');
     await browser.close();
@@ -168,39 +170,15 @@ const sendEmail = () => new Promise(async (resolve, reject) => {
           from: 'bot.donedeal@gmail.com <bot.donedeal@gmail.com>',
           to: 'asifmai@hotmail.com',
           subject: 'Bot Done Deal Notifications',
-          // html: generateEmailBody(name, email, subject, message),
-          html: '<h1>DONE</h1>',
+          html: generateEmailBody(),
         };
     
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             return console.log(error);
           }
-          console.log('Contact Us Email Sent : %s', info.response);
+          console.log('Email Notification Sent : %s', info.response);
         });
-      }
-    });
-    //  dasfd
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASSWORD // naturally, replace both with your real credentials or an application-specific password
-      }
-    });
-    
-    const mailOptions = {
-      from: 'bot.donedeal@gmail.com',
-      to: 'asifmai@hotmail.com',
-      subject: 'Done Deal Bot Notifications',
-      text: 'Dudes, we really need your money.'
-    };
-    
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-      console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
       }
     });
 
@@ -210,5 +188,63 @@ const sendEmail = () => new Promise(async (resolve, reject) => {
     reject(error);
   }
 });
+
+const generateEmailBody = () => {
+  let html = '<h1>Bot DoneDeal Notifications</h1>';
+  for (let i = 0; i < results.length; i++) {
+    const res = results[i];
+    html+= `<br>
+    <table border="1">
+      <tbody >
+        <tr>
+          <td colspan="9">
+            <a href="${res.link}">${i+1} - ${res.title}</a>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="2">
+            <img width="200" src="${res.images}" alt="">
+          </td>
+          <td>
+            <strong>Make</strong>
+          </td>
+          <td>
+            <strong>Model</strong>
+          </td>
+          <td>
+            <strong>Price</strong>
+          </td>
+          <td>
+            <strong>Year</strong>
+          </td>
+          <td>
+            <strong>Mileage</strong>
+          </td>
+          <td>
+            <strong>Colour</strong>
+          </td>
+          <td>
+            <strong>Doors</strong>
+          </td>
+          <td>
+            <strong>Time Listed</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>${res.make}</td>
+          <td>${res.model}</td>
+          <td>${res.price}</td>
+          <td>${res.year}</td>
+          <td>${res.mileage}</td>
+          <td>${res.color}</td>
+          <td>${res.doors}</td>
+          <td>${res.timeListed} mins ago</td>
+        </tr>
+      </tbody>
+    </table>`
+  };
+
+  return html;
+}
 
 this.run();
