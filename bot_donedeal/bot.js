@@ -245,3 +245,4 @@ const generateEmailBody = () => {
   return html;
 }
 
+this.run();
