@@ -26,6 +26,18 @@ router.post('/', async (req, res, next) => {
     config.source = req.body.source;
     config.adType = req.body.adType;
     config.country = req.body.country;
+    config.area = req.body.area;
+    config.price_from = req.body.price_from;
+    config.price_to = req.body.price_to;
+    config.year_from = req.body.year_from;
+    config.year_to = req.body.year_to;
+    config.verifications = req.body.verifications;
+    config.transmission = req.body.transmission;
+    config.engine_from = req.body.engine_from;
+    config.engine_to = req.body.engine_to;
+    config.mileage_from = req.body.mileage_from;
+    config.mileage_to = req.body.mileage_to;
+
     await getConfig.set(config);
     axios.get(`${botLink}/restart`);
   

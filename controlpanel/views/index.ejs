@@ -19,6 +19,93 @@
 
           <div class="col-md-6">
             <div class="form-group">
+              <label for="model">Model</label>
+              <input type="text" class="form-control" id="model" name="model" value="<%= config.model %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="make">Make</label>
+              <input type="text" class="form-control" id="make" name="make" value="<%= config.make %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="price_from">Price From</label>
+              <input type="text" class="form-control" id="price_from" name="price_from" value="<%= config.price_from %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="price_to">Price To</label>
+              <input type="text" class="form-control" id="price_to" name="price_to" value="<%= config.price_to %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="year_from">Year From</label>
+              <input type="text" class="form-control" id="year_from" name="year_from" value="<%= config.year_from %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="year_to">Year To</label>
+              <input type="text" class="form-control" id="year_to" name="year_to" value="<%= config.year_to %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="area">Location</label>
+              <select name="area" id="area" class="form-control">
+                <option value="" <%= config.area == '' ? 'selected' : '' %>>All Ireland</option>
+                <option value="Leinster" <%= config.area == 'Leinster' ? 'selected' : '' %>>Leinster</option>
+                <option value="Munster" <%= config.area == 'Munster' ? 'selected' : '' %>>Munster</option>
+                <option value="Ulster" <%= config.area == 'Ulster' ? 'selected' : '' %>>Ulster</option>
+                <option value="Connacht" <%= config.area == 'Connacht' ? 'selected' : '' %>>Connacht</option>
+                <option value="Antrim" <%= config.area == 'Antrim' ? 'selected' : '' %>>Antrim</option>
+                <option value="Armagh" <%= config.area == 'Armagh' ? 'selected' : '' %>>Armagh</option>
+                <option value="Carlow" <%= config.area == 'Carlow' ? 'selected' : '' %>>Carlow</option>
+                <option value="Cavan" <%= config.area == 'Cavan' ? 'selected' : '' %>>Cavan</option>
+                <option value="Clare" <%= config.area == 'Clare' ? 'selected' : '' %>>Clare</option>
+                <option value="Cork" <%= config.area == 'Cork' ? 'selected' : '' %>>Cork</option>
+                <option value="Derry" <%= config.area == 'Derry' ? 'selected' : '' %>>Derry</option>
+                <option value="Donegal" <%= config.area == 'Donegal' ? 'selected' : '' %>>Donegal</option>
+                <option value="Down" <%= config.area == 'Down' ? 'selected' : '' %>>Down</option>
+                <option value="Dublin" <%= config.area == 'Dublin' ? 'selected' : '' %>>Dublin</option>
+                <option value="Fermanagh" <%= config.area == 'Fermanagh' ? 'selected' : '' %>>Fermanagh</option>
+                <option value="Galway" <%= config.area == 'Galway' ? 'selected' : '' %>>Galway</option>
+                <option value="Kerry" <%= config.area == 'Kerry' ? 'selected' : '' %>>Kerry</option>
+                <option value="Kildare" <%= config.area == 'Kildare' ? 'selected' : '' %>>Kildare</option>
+                <option value="Kilkenny" <%= config.area == 'Kilkenny' ? 'selected' : '' %>>Kilkenny</option>
+                <option value="Laois" <%= config.area == 'Laois' ? 'selected' : '' %>>Laois</option>
+                <option value="Leitrim" <%= config.area == 'Leitrim' ? 'selected' : '' %>>Leitrim</option>
+                <option value="Limerick" <%= config.area == 'Limerick' ? 'selected' : '' %>>Limerick</option>
+                <option value="Longford" <%= config.area == 'Longford' ? 'selected' : '' %>>Longford</option>
+                <option value="Louth" <%= config.area == 'Louth' ? 'selected' : '' %>>Louth</option>
+                <option value="Mayo" <%= config.area == 'Mayo' ? 'selected' : '' %>>Mayo</option>
+                <option value="Meath" <%= config.area == 'Meath' ? 'selected' : '' %>>Meath</option>
+                <option value="Monaghan" <%= config.area == 'Monaghan' ? 'selected' : '' %>>Monaghan</option>
+                <option value="Offaly" <%= config.area == 'Offaly' ? 'selected' : '' %>>Offaly</option>
+                <option value="Roscommon" <%= config.area == 'Roscommon' ? 'selected' : '' %>>Roscommon</option>
+                <option value="Sligo" <%= config.area == 'Sligo' ? 'selected' : '' %>>Sligo</option>
+                <option value="Tipperary" <%= config.area == 'Tipperary' ? 'selected' : '' %>>Tipperary</option>
+                <option value="Tyrone" <%= config.area == 'Tyrone' ? 'selected' : '' %>>Tyrone</option>
+                <option value="Waterford" <%= config.area == 'Waterford' ? 'selected' : '' %>>Waterford</option>
+                <option value="Westmeath" <%= config.area == 'Westmeath' ? 'selected' : '' %>>Westmeath</option>
+                <option value="Wexford" <%= config.area == 'Wexford' ? 'selected' : '' %>>Wexford</option>
+                <option value="Wicklow" <%= config.area == 'Wicklow' ? 'selected' : '' %>>Wicklow</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
               <label for="bodyType">Body Type</label>
               <select name="bodyType" id="bodyType" class="form-control">
                 <option value="" <%= config.bodyType == '' ? 'selected' : '' %>>Any</option>
@@ -45,6 +132,34 @@
 
           <div class="col-md-6">
             <div class="form-group">
+              <label for="engine_from">Engine From</label>
+              <input type="text" class="form-control" id="engine_from" name="engine_from" value="<%= config.engine_from %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="engine_to">Engine To</label>
+              <input type="text" class="form-control" id="engine_to" name="engine_to" value="<%= config.engine_to %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="mileage_from">Mileage From</label>
+              <input type="text" class="form-control" id="mileage_from" name="mileage_from" value="<%= config.mileage_from %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="mileage_to">Mileage To</label>
+              <input type="text" class="form-control" id="mileage_to" name="mileage_to" value="<%= config.mileage_to %>">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
               <label for="numDoors">Doors</label>
               <select name="numDoors" id="numDoors" class="form-control">
                 <option value="" <%= config.numDoors == '' ? 'selected' : '' %>>Any</option>
@@ -66,6 +181,29 @@
                 <option value="Diesel" <%= config.fuelType == 'Diesel' ? 'selected' : '' %>>Diesel</option>
                 <option value="Electric" <%= config.fuelType == 'Electric' ? 'selected' : '' %>>Electric</option>
                 <option value="Hybrid" <%= config.fuelType == 'Hybrid' ? 'selected' : '' %>>Hybrid</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="verifications">Verifications</label>
+              <select name="verifications" id="verifications" class="form-control">
+                <option value="" <%= config.verifications == '' ? 'selected' : '' %>>Any</option>
+                <option value="nct" <%= config.verifications == 'nct' ? 'selected' : '' %>>NCT</option>
+                <option value="manufacturerApproved" <%= config.verifications == 'manufacturerApproved' ? 'selected' : '' %>>Manufacturer Approved</option>
+                <option value="greenlightVerified" <%= config.verifications == 'greenlightVerified' ? 'selected' : '' %>>Greenlight Verified</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="transmission">Transmission</label>
+              <select name="transmission" id="transmission" class="form-control">
+                <option value="" <%= config.transmission == '' ? 'selected' : '' %>>Any</option>
+                <option value="Manual" <%= config.transmission == 'Manual' ? 'selected' : '' %>>Manual</option>
+                <option value="Automatic" <%= config.transmission == 'Automatic' ? 'selected' : '' %>>Automatic</option>
               </select>
             </div>
           </div>
