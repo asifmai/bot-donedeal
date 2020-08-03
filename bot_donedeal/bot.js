@@ -167,7 +167,7 @@ const sendEmail = () => new Promise(async (resolve, reject) => {
 
         const mailOptions = {
           from: 'bot.donedeal@gmail.com <bot.donedeal@gmail.com>',
-          to: 'asifmai@hotmail.com',
+          to: 'chicaneauto@gmail.com',
           subject: 'Bot Done Deal Notifications',
           html: generateEmailBody(),
         };
