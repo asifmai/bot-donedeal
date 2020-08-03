@@ -38,26 +38,28 @@ const fetchData = () => new Promise(async (resolve, reject) => {
     await page.goto(link, {timeout: 0, waitUntil: 'networkidle2'});
     await page.screenshot({path: 'screenshot.png'});
 
-    await page.waitForSelector('.card-collection-container > ul.card-collection > li.card-item');
-    const carNodes = await page.$$('.card-collection-container > ul.card-collection > li.card-item');
-
-    for (let i = 0; i < carNodes.length; i++) {
-      let timeListed = await pupHelper.getTxt('ul.card__body-keyinfo > li:nth-child(4)', carNodes[i]);
-      console.log(timeListed);
-      if (timeListed.includes('min') || timeListed.includes('mins')) {
-        timeListed = Number(timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
-        if (timeListed <= Number(config.repeat)) {
-          const carLink = await pupHelper.getAttr('a', 'href', carNodes[i]);
-          // console.log(`Time Listed: ${timeListed} - Car can be scraped... ${carLink}`);
-          carsLinks.push({
-            timeListed, carLink
-          });
+    const gotProducts = await page.$('.card-collection-container > ul.card-collection > li.card-item');
+    if (gotProducts) {
+      const carNodes = await page.$$('.card-collection-container > ul.card-collection > li.card-item');
+  
+      for (let i = 0; i < carNodes.length; i++) {
+        let timeListed = await pupHelper.getTxt('ul.card__body-keyinfo > li:nth-child(4)', carNodes[i]);
+        console.log(timeListed);
+        if (timeListed.includes('min') || timeListed.includes('mins')) {
+          timeListed = Number(timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
+          if (timeListed <= Number(config.repeat)) {
+            const carLink = await pupHelper.getAttr('a', 'href', carNodes[i]);
+            // console.log(`Time Listed: ${timeListed} - Car can be scraped... ${carLink}`);
+            carsLinks.push({
+              timeListed, carLink
+            });
+          }
         }
       }
-    }
-
-    for (let carNumber = 0; carNumber < carsLinks.length; carNumber++) {
-      await fetchCar(carNumber);
+  
+      for (let carNumber = 0; carNumber < carsLinks.length; carNumber++) {
+        await fetchCar(carNumber);
+      }
     }
 
     await page.close();
