@@ -73,7 +73,7 @@ const fetchCar = (carIdx) => new Promise(async (resolve, reject) => {
   let page;
   try {
     const car = {};
-    console.log(`${carIdx+1}/${carsLinks.length} - Fetching Car ${carsLinks[carIdx].carIdx}`);
+    console.log(`${carIdx+1}/${carsLinks.length} - Fetching Car ${carsLinks[carIdx].carLink}`);
     page = await pupHelper.launchPage(browser);
     await page.goto(carsLinks[carIdx].carLink, {timeout: 0, waitUntil: 'networkidle2'});
     
