@@ -43,6 +43,7 @@ const fetchData = () => new Promise(async (resolve, reject) => {
 
     for (let i = 0; i < carNodes.length; i++) {
       let timeListed = await pupHelper.getTxt('ul.card__body-keyinfo > li:nth-child(4)', carNodes[i]);
+      console.log(timeListed);
       if (timeListed.includes('min') || timeListed.includes('mins')) {
         timeListed = Number(timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
         if (timeListed <= Number(config.repeat)) {
