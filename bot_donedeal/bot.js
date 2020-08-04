@@ -147,23 +147,23 @@ const createSiteLink = () => {
   } else {
     link += '?sort=publishdate%20desc';
   }
-  link += `&bodyType=${config.bodyType}`;
-  link += `&car-finance=${config['car-finance']}`;
-  link += `&numDoors=${config.numDoors}`;
-  link += `&fuelType=${config.fuelType}`;
-  link += `&source=${config.source}`;
-  link += `&adType=${config.adType}`;
-  link += `&area=${config.area}`;
-  link += `&price_from=${config.price_from}`;
-  link += `&price_to=${config.price_to}`;
-  link += `&year_from=${config.year_from}`;
-  link += `&year_to=${config.year_to}`;
-  link += `&verifications=${config.verifications}`;
-  link += `&transmission=${config.transmission}`;
-  link += `&engine_from=${config.engine_from}`;
-  link += `&engine_to=${config.engine_to}`;
-  link += `&mileage_from=${config.mileage_from}`;
-  link += `&mileage_to=${config.mileage_to}`;
+  link += config.bodyType != '' ? `&bodyType=${config.bodyType}` : '';
+  link += config['car-finance'] != '' ? `&car-finance=${config['car-finance']}` : '';
+  link += config.numDoors != '' ? `&numDoors=${config.numDoors}` : '';
+  link += config.fuelType != '' ? `&fuelType=${config.fuelType}` : '';
+  link += config.source != '' ? `&source=${config.source}` : '';
+  link += config.adType != '' ? `&adType=${config.adType}` : '';
+  link += config.area != '' ? `&area=${config.area}` : '';
+  link += config.price_from != '' ? `&price_from=${config.price_from}` : '';
+  link += config.price_to != '' ? `&price_to=${config.price_to}` : '';
+  link += config.year_from != '' ? `&year_from=${config.year_from}` : '';
+  link += config.year_to != '' ? `&year_to=${config.year_to}` : '';
+  link += config.verifications != '' ? `&verifications=${config.verifications}` : '';
+  link += config.transmission != '' ? `&transmission=${config.transmission}` : '';
+  link += config.engine_from != '' ? `&engine_from=${config.engine_from}` : '';
+  link += config.engine_to != '' ? `&engine_to=${config.engine_to}` : '';
+  link += config.mileage_from != '' ? `&mileage_from=${config.mileage_from}` : '';
+  link += config.mileage_to != '' ? `&mileage_to=${config.mileage_to}` : '';
 
   return link;
 }
