@@ -4,7 +4,7 @@ const getConfig = require('./helpers/getconfig');
 const nodemailer = require('nodemailer');
 let config;
 let browser;
-const results = [];
+let results = [];
 let carsLinks = [];
 
 module.exports.run = () => new Promise(async (resolve, reject) => {
