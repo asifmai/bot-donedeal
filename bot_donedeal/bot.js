@@ -53,6 +53,8 @@ const fetchData = () => new Promise(async (resolve, reject) => {
               carsLinks.push({
                 timeListed, carLink
               });
+            } else {
+              console.log(`Duplicate link found: ${carLink}`);
             }
           }
         }
