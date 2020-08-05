@@ -47,12 +47,13 @@ const fetchData = () => new Promise(async (resolve, reject) => {
         console.log(timeListed);
         if (timeListed.includes('min') || timeListed.includes('mins')) {
           timeListed = Number(timeListed.replace(/mins/gi, '').trim().replace(/min/gi, '').trim());
-          if (timeListed <= Number(config.repeat)) {
+          if (timeListed <= Number(config.repeat) && timeListed > 0) {
             const carLink = await pupHelper.getAttr('a', 'href', carNodes[i]);
-            // console.log(`Time Listed: ${timeListed} - Car can be scraped... ${carLink}`);
-            carsLinks.push({
-              timeListed, carLink
-            });
+            if (!carsLinks.some(cl => cl.carLink == carLink)) {
+              carsLinks.push({
+                timeListed, carLink
+              });
+            }
           }
         }
       }
