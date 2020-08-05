@@ -9,6 +9,8 @@ let carsLinks = [];
 
 module.exports.run = () => new Promise(async (resolve, reject) => {
   try {
+    carsLinks = [];
+    results = [];
     console.log('Started Scraping...');
     config = await getConfig.get();
     browser = await pupHelper.launchBrowser();
